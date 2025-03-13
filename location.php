@@ -18,6 +18,7 @@ if (!isset($_SESSION['email'])) {
     header("Location: signin.php");
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +38,11 @@ if (!isset($_SESSION['email'])) {
         }
 
         nav {
-            background: #1a1a1a;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
+            background: #1a1a1a;
         }
 
         .logo {
@@ -56,13 +57,13 @@ if (!isset($_SESSION['email'])) {
 
         .nav-links a {
             text-decoration: none;
-            color: #fff;
+            color: #ffffff;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #663399;
+            opacity: 0.8;
         }
 
         .profile-section {
@@ -136,171 +137,283 @@ if (!isset($_SESSION['email'])) {
 
         .main-content {
             background-color: rgb(33, 29, 105);
-            min-height: 100vh;
+            min-height: 80vh;
             padding: 4rem 5%;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center;
+            justify-content: space-between;
+            gap: 4rem;
         }
 
         .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            flex: 1;
+            color: white;
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, #fff, #e6e6e6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .primary-btn {
+            background: black;
+            color: white;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
         .features-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-            width: 100%;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 600px;
+            perspective: 1000px;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            flex: 0 1 300px;
+            background: rgba(102, 51, 153, 0.8);
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .feature-card p {
             font-size: 1rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
+            opacity: 0.9;
+        }
+
+        .feature-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 51, 153, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover .feature-hover {
+            opacity: 1;
+        }
+
+        .feature-hover p {
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         footer {
             background: #1a1a1a;
-            color: #fff;
-            padding: 2rem 5%;
+            padding: 4rem 5% 2rem;
+            color: #ffffff;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .footer-message h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #663399, #FF1493);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .footer-section h3 {
+            color: #663399;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
 
-        .footer-message p {
-            color: #888;
-            font-size: 0.9rem;
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 2px;
+            background: #663399;
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #cccccc;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #663399;
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 1rem;
+            color: #cccccc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: #663399;
+            width: 20px;
         }
 
         .social-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
-        .social-icon {
-            color: #fff;
-            text-decoration: none;
-            width: 40px;
-            height: 40px;
+        .social-links a {
+            color: #ffffff;
+            background: #663399;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
         }
 
-        .social-icon:hover {
+        .social-links a:hover {
             transform: translateY(-3px);
-            background: #663399;
-            color: white;
+            box-shadow: 0 5px 15px rgba(102, 51, 153, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: #888888;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-                padding: 2rem;
+            .footer-container {
+                grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text {
-                font-size: 2rem;
-            }
-
-            .cta-buttons {
-                justify-content: center;
-            }
-
-            .features-grid {
-                gap: 1rem;
-            }
-
-            .feature-card {
-                flex: 0 1 100%;
-                max-width: 100%;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             .social-links {
                 justify-content: center;
+            }
+
+            .contact-info li {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid {
+                max-width: 500px;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-icon {
+                font-size: 2rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
             }
         }
 
@@ -333,151 +446,51 @@ if (!isset($_SESSION['email'])) {
             }
         }
 
-        /* Update logo text colors */
-        .logo text {
-            fill: #fff;
-        }
-
-        .logo text:last-child {
-            fill: #888;
-        }
-
-        /* Updated and new footer styles */
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            padding: 3rem 1rem;
-        }
-
-        .footer-section {
-            color: #fff;
-        }
-
-        .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            position: relative;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 50px;
-            height: 2px;
-            background: #663399;
-        }
-
-        .footer-section p {
-            color: #888;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links,
-        .contact-info {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li,
-        .contact-info li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: #888;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: #663399;
-            transform: translateX(5px);
-        }
-
-        .contact-info li {
-            color: #888;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-info li i {
-            color: #663399;
-            width: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            opacity: 0.9;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.5rem 0;
-            text-align: center;
-        }
-
-        .footer-bottom p {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive footer styles */
-        @media (max-width: 992px) {
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-section {
-                text-align: center;
-            }
-
-            .footer-section h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-
-            .contact-info li {
-                justify-content: center;
-            }
+        #map {
+            height: 500px;
+            width: 100%;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-avatar')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Add this to handle the logout message
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutMessage = document.getElementById('logoutMessage');
+            if (logoutMessage) {
+                logoutMessage.style.display = 'block';
+                setTimeout(() => {
+                    logoutMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""> </script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -487,7 +500,7 @@ if (!isset($_SESSION['email'])) {
         </div>
     <?php endif; ?>
 
-    <nav>
+    <nav style="background: #1a1a1a;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120" class="logo">
             <g transform="translate(30, 10)">
                 <path d="M50 35
@@ -516,16 +529,16 @@ if (!isset($_SESSION['email'])) {
                          Q52 35, 45 40" fill="#FF69B4" opacity="0.5" />
             </g>
             <text x="150" y="80" font-family="Arial Black, sans-serif" font-weight="900" font-size="60"
-                fill="#333">GUARDSPHERE</text>
-            <text x="150" y="105" font-family="Arial, sans-serif" font-size="20" fill="#666">GUARDED BY
+                fill="#ffffff">GUARDSPHERE</text>
+            <text x="150" y="105" font-family="Arial, sans-serif" font-size="20" fill="#ffffff">GUARDED BY
                 GUARDSPHERE.</text>
         </svg>
         <div class="nav-links">
-            <a href="home.php">Home</a>
-            <a href="Aboutus.php">About Us</a>
-            <a href="#service">Service</a>
-            <a href="location.php">Location</a>
-            <a href="#evidence">Evidence</a>
+            <a href="home.php" style="color: #ffffff;">Home</a>
+            <a href="Aboutus.php" style="color: #ffffff;">About Us</a>
+            <a href="#service" style="color: #ffffff;">Service</a>
+            <a href="location.php" style="color: #ffffff;">Location</a>
+            <a href="#evidence" style="color: #ffffff;">Evidence</a>
             <div class="profile-section">
                 <div class="user-avatar" onclick="toggleDropdown()">
                     <?php
@@ -546,52 +559,12 @@ if (!isset($_SESSION['email'])) {
     </nav>
 
     <div class="main-content">
-        <div class="hero-content">
-            <h1>Comprehensive Safety Features</h1>
-            <p class="hero-description">Protecting women through innovative technology and immediate response systems
-            </p>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚠️</div>
-                    <h3>SOS Alert System</h3>
-                    <p>Instant emergency alerts sent to predetermined contacts with your exact location and situation
-                        details.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Real-time Tracking</h3>
-                    <p>Advanced GPS tracking system with safe route suggestions and danger zone alerts.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔊</div>
-                    <h3>Voice Activation</h3>
-                    <p>Hands-free emergency activation through voice commands for quick response.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📹</div>
-                    <h3>Evidence Recording</h3>
-                    <p>Secure audio and video recording with automatic cloud backup for legal documentation.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Community Support</h3>
-                    <p>Connect with nearby users and access a network of verified safety volunteers.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>24/7 Support</h3>
-                    <p>Round-the-clock professional support team ready to respond to emergency situations.</p>
-                </div>
-            </div>
-        </div>
+        <div id="map"></div>
+        <button onclick="getCurrentLocation()" style="margin-top:10px; padding:10px; font-size:16px; cursor:pointer;">
+    Get My Current Location
+</button>
     </div>
-
+    </div>
 
 
     <footer>
@@ -650,68 +623,83 @@ if (!isset($_SESSION['email'])) {
             <p>&copy; 2024 GuardSphere. All rights reserved.</p>
         </div>
     </footer>
-
     <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('profileDropdown');
-            dropdown.classList.toggle('show');
+    var userID = 1; // Replace with actual logged-in user ID
+
+    function updateLocation(latlng, message, autoShare = false) {
+        if (lastClickedMarker) map.removeLayer(lastClickedMarker);
+        if (lastClickedCircle) map.removeLayer(lastClickedCircle);
+
+        lastClickedMarker = L.marker(latlng).addTo(map)
+            .bindPopup(message + " " + latlng.toString())
+            .openPopup();
+
+        lastClickedCircle = L.circle(latlng, {
+            color: 'blue',
+            fillColor: 'lightblue',
+            fillOpacity: 0.3,
+            radius: 500
+        }).addTo(map);
+
+        lastClickedLocation = latlng;
+        map.setView(latlng, 13);
+
+        // Send location to database
+        updateLocationInDB(latlng.lat, latlng.lng);
+
+        // Automatically share the location if requested
+        if (autoShare) {
+            shareLocation();
+        }
+    }
+
+    function updateLocationInDB(latitude, longitude) {
+        fetch('update_location.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `user_id=${userID}&latitude=${latitude}&longitude=${longitude}`
+        })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error("Error updating location:", error));
+    }
+
+    function getCurrentLocation() {
+        if (!navigator.geolocation) {
+            alert("Geolocation is not supported by your browser.");
+            return;
         }
 
-        // Close dropdown when clicking outside
-        window.onclick = function(event) {
-            if (!event.target.matches('.user-avatar')) {
-                const dropdowns = document.getElementsByClassName('dropdown-content');
-                for (let i = 0; i < dropdowns.length; i++) {
-                    const openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latlng = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
 
-        // Add this to handle the logout message
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoutMessage = document.getElementById('logoutMessage');
-            if (logoutMessage) {
-                logoutMessage.style.display = 'block';
-                setTimeout(() => {
-                    logoutMessage.style.display = 'none';
-                }, 3000);
-            }
+            updateLocation(latlng, "Your current location:", true);
+        }, function() {
+            alert("Unable to retrieve your location.");
         });
+    }
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+    // Initialize the map
+    const map = L.map('map').setView([51.505, -0.09], 13); // Set initial view to a specific location
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (event) => {
-            if (!event.target.closest('.navbar') && navLinks.classList.contains('show')) {
-                navLinks.classList.remove('show');
-            }
-        });
+    // Optional: Add a marker to the map
+    const marker = L.marker([51.505, -0.09]).addTo(map)
+        .bindPopup('You are here!')
+        .openPopup();
+    </script>  
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu after clicking a link
-                if (navLinks.classList.contains('show')) {
-                    navLinks.classList.remove('show');
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
